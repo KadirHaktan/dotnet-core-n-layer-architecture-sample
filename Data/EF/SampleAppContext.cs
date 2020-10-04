@@ -24,7 +24,7 @@ namespace Data.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-0KLVU2P\SQLEXPRESS;Initial Catalog=SampleProductDB;Integrated Security=True");
+            optionsBuilder.UseSqlServer("your connection string");
         }
     }
 }
