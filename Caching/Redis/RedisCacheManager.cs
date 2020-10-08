@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Services.Response;
 using Newtonsoft.Json;
 
 namespace Caching.redis
@@ -37,6 +38,17 @@ namespace Caching.redis
             {
                 string jsonData = _redisServer.Database.StringGet(key);
                 return JsonConvert.DeserializeObject<object>(jsonData);
+            }
+
+            return default;
+        }
+
+        public object Get(string key, Type type)
+        {
+            if (IsAdd(key))
+            {
+                string jsonData = _redisServer.Database.StringGet(key);
+                return JsonConvert.DeserializeObject(jsonData,type);
             }
 
             return default;
