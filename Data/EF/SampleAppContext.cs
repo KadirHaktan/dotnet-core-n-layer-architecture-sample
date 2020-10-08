@@ -26,7 +26,7 @@ namespace Data.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"your connection");
+                "");
         }
 
 
