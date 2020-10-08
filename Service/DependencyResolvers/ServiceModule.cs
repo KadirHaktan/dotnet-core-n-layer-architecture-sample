@@ -22,10 +22,10 @@ namespace Service.DependencyResolvers
         {
             services.AddScoped<IRepository<Product>, EfGenericRepositoryBase<Product,SampleAppContext>>();
             services.AddTransient<IProductService<ProductModel>, ProductModelService>();
-            services.AddDbContext<SampleAppContext>(options =>
-                options.UseSqlServer(
-                    "your connection"));
 
+            services.AddDbContext<SampleAppContext>(options => options.UseSqlServer(@"Data Source=DESKTOP-0KLVU2P\SQLEXPRESS;Initial Catalog=SampleProductDB;Integrated Security=True"));
+
+            services.AddSingleton<RedisServer>();
             services.AddSingleton<ICacheManager, RedisCacheManager>();
 
 
