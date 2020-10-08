@@ -98,7 +98,7 @@ namespace Service.Concerete
         }
 
 
-      //  [CacheAspect(60)]
+      [CacheAspect(60)]
         public ServiceResponse<ProductModel> List()
         {
             var response=new ServiceResponse<ProductModel>(null);
