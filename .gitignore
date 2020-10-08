@@ -27,3 +27,9 @@
 /Core/obj
 /Core/Core.csproj
 /API/Properties
+/Validations/obj
+/Validations/Validations.csproj
+/Caching/bin/Debug/netcoreapp3.1
+/Caching/obj
+/Caching/Caching.csproj
+/Validations/bin/Debug/netcoreapp3.1
