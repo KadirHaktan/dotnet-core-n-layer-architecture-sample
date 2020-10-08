@@ -6,6 +6,8 @@ using Castle.DynamicProxy;
 using Core.Aspects.Base;
 using Core.CrossCuttingCornces.Caching;
 using Core.Ioc;
+using Core.Model;
+using Core.Services.Response;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Aspects.Caching
@@ -27,9 +29,13 @@ namespace Core.Aspects.Caching
 
             string key = $"{methodName}(${string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))}";
 
+            Type type = invocation.GetConcreteMethod().ReturnType;
+            
+            
+
             if (_cacheManager.IsAdd(key))
             {
-                invocation.ReturnValue = _cacheManager.Get(key);
+                invocation.ReturnValue = _cacheManager.Get(key,type);
                 return;
             }
 
