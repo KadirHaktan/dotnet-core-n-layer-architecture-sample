@@ -24,7 +24,7 @@ namespace Service.DependencyResolvers
             services.AddTransient<IProductService<ProductModel>, ProductModelService>();
             services.AddDbContext<SampleAppContext>(options =>
                 options.UseSqlServer(
-                    @"Data Source=DESKTOP-0KLVU2P\SQLEXPRESS;Initial Catalog=SampleProductDB;Integrated Security=True"));
+                    "your connection"));
 
             services.AddSingleton<ICacheManager, RedisCacheManager>();
 
