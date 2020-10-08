@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
+using Caching.redis;
+using Core.CrossCuttingCornces.Caching;
 using Core.Ioc;
 using Core.Repository;
 using Data.EF;
@@ -20,9 +24,12 @@ namespace Service.DependencyResolvers
             services.AddTransient<IProductService<ProductModel>, ProductModelService>();
             services.AddDbContext<SampleAppContext>(options =>
                 options.UseSqlServer(
-                    "your connection string"));
+                    @"Data Source=DESKTOP-0KLVU2P\SQLEXPRESS;Initial Catalog=SampleProductDB;Integrated Security=True"));
 
-           
+            services.AddSingleton<ICacheManager, RedisCacheManager>();
+
+
+
         }
     }
 }

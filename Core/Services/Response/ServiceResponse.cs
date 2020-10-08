@@ -21,6 +21,8 @@ namespace Core.Services.Response
         [JsonProperty]
         public T Entity { get; set; }
 
+        public int Id { get; set; }
+
         public int Count { get; set; }
 
         public bool IsValid => !HasExceptionError && string.IsNullOrEmpty(ExceptionMessage);

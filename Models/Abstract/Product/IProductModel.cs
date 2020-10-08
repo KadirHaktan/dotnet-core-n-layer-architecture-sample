@@ -7,6 +7,6 @@ namespace Models.Abstract.Product
 {
     public interface IProductModel:IModel
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
     }
 }

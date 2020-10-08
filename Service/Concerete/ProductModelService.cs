@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Aspects.Validation;
 using Core.Repository;
 using Core.Services.Response;
 using Entities;
 using Models.Concerete.Product;
 using Service.Abstract;
+using Validations.Product;
 
 namespace Service.Concerete
 {
@@ -35,7 +37,6 @@ namespace Service.Concerete
 
             var productViewModel = new ProductModel()
             {
-                Id = product.Id,
                 CategoryId = product.CategoryId,
                 InnerBarcode = product.InnerBarcode,
                 Name = product.Name,
@@ -60,7 +61,6 @@ namespace Service.Concerete
 
             var productViewModel = new ProductModel()
             {
-                Id = product.Id,
                 CategoryId = product.CategoryId,
                 InnerBarcode = product.InnerBarcode,
                 Name = product.Name,
@@ -75,6 +75,7 @@ namespace Service.Concerete
         }
 
         
+        [ValidationAspect(typeof(ProductModelValidation))]
         public ServiceResponse<int> Insert(ProductModel model)
         {
             var response=new ServiceResponse<int>(null);
@@ -90,7 +91,7 @@ namespace Service.Concerete
             });
 
             response.Count = 1;
-            response.Entity = query.Id;
+            response.Id = query.Id;
 
             return response;
         }
@@ -108,7 +109,6 @@ namespace Service.Concerete
             {
                 var productViewModel = new ProductModel()
                 {
-                    Id = product.Id,
                     CategoryId = product.CategoryId,
                     InnerBarcode = product.InnerBarcode,
                     IsDeleted = product.IsDeleted,
@@ -136,7 +136,6 @@ namespace Service.Concerete
             {
                 var productViewModel = new ProductModel()
                 {
-                    Id = product.Id,
                     CategoryId = product.CategoryId,
                     InnerBarcode = product.InnerBarcode,
                     IsDeleted = product.IsDeleted,

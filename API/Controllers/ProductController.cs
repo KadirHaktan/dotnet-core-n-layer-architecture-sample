@@ -35,7 +35,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public ServiceResponse<int> Addroduct(ProductModel model)
+        public ServiceResponse<int> AddProduct(ProductModel model)
         {
             var response = new ServiceResponse<int>(HttpContext);
 
@@ -43,7 +43,7 @@ namespace API.Controllers
 
             response.IsSuccesful = true;
             response.Count = query.Count;
-            response.Entity = query.Entity;
+            response.Id = query.Id;
 
             return response;
         }

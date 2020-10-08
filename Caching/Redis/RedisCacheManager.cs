@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Caching.Redis
+namespace Caching.redis
 {
     public class RedisCacheManager : ICacheManager
     {
@@ -25,7 +25,7 @@ namespace Caching.Redis
             if (IsAdd(key))
             {
                 string jsonData = _redisServer.Database.StringGet(key);
-                return JsonConvert.DeserializeObject<T>(jsonData);
+                return JsonConvert.DeserializeObject<T>(jsonData);  
             }
 
             return default;
@@ -33,7 +33,13 @@ namespace Caching.Redis
 
         public object Get(string key)
         {
-            throw new NotImplementedException();
+            if (IsAdd(key))
+            {
+                string jsonData = _redisServer.Database.StringGet(key);
+                return JsonConvert.DeserializeObject<object>(jsonData);
+            }
+
+            return default;
         }
 
         public bool IsAdd(string key)

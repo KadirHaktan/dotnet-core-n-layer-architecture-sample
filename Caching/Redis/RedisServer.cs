@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
 
-namespace Caching.Redis
+namespace Caching.redis
 {
     public class RedisServer
     {
