@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
 namespace Core.CrossCuttingCornces.Caching
@@ -9,6 +10,8 @@ namespace Core.CrossCuttingCornces.Caching
         T Get<T>(string key);
 
         object Get(string key);
+
+        object Get(string key, Type type);
 
 
         void Add(string key, object data, int duration);
