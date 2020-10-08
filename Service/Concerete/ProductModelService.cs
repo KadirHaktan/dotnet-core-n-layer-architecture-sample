@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Aspects.Caching;
 using Core.Aspects.Validation;
 using Core.Repository;
 using Core.Services.Response;
@@ -96,6 +97,8 @@ namespace Service.Concerete
             return response;
         }
 
+
+      //  [CacheAspect(60)]
         public ServiceResponse<ProductModel> List()
         {
             var response=new ServiceResponse<ProductModel>(null);
