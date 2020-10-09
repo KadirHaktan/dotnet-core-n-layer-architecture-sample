@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Extensions.Ioc;
+using Core.Extensions.Middleware;
 using Core.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,11 +49,14 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.ConfigureToCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
