@@ -16,7 +16,13 @@ namespace Core.CrossCuttingCornces.Validation.fluentValidation
 
             if (!result.IsValid)
             {
-                throw new ValidationException(result.Errors);
+                string messages = "";
+
+                for (int i = 0; i < result.Errors.Count; i++)
+                {
+                    messages += result.Errors[i].ErrorMessage;
+                }
+                throw new ValidationException(messages);
             }
         }
     }
