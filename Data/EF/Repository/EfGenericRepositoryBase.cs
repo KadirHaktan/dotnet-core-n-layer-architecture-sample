@@ -47,6 +47,7 @@ namespace Data.EF.Repository
         public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await Entities.AddRangeAsync(entities);
+            
         }
 
         public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
@@ -97,6 +98,7 @@ namespace Data.EF.Repository
         public TEntity Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
             return entity;
         }
 
@@ -108,6 +110,8 @@ namespace Data.EF.Repository
         public async Task<TEntity> InsertAsync(TEntity entity)
         {
             var result = await Entities.AddAsync(entity);
+
+            await _context.SaveChangesAsync();
 
             return result.Entity;
 
@@ -127,6 +131,8 @@ namespace Data.EF.Repository
 
             var deletedResult=Entities.Remove(result);
 
+            await _context.SaveChangesAsync();
+
             return deletedResult.Entity;
         }
 
@@ -136,6 +142,8 @@ namespace Data.EF.Repository
 
             var deletedResult = Entities.Remove(result);
 
+           _context.SaveChanges();
+
             return deletedResult.Entity;
         }
     
@@ -144,6 +152,8 @@ namespace Data.EF.Repository
         public TEntity UpdateOptional(TEntity entity)
         {
             var deletedResult = Entities.Update(entity);
+
+            _context.SaveChanges();
 
             return deletedResult.Entity;
         }
