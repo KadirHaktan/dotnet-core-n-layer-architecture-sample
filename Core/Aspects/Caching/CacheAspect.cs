@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Castle.DynamicProxy;
 using Core.Aspects.Base;
 using Core.CrossCuttingCornces.Caching;
 using Core.Ioc;
-using Core.Model;
-using Core.Services.Response;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Aspects.Caching
@@ -24,7 +20,7 @@ namespace Core.Aspects.Caching
         }
         public override void Intercept(IInvocation invocation)
         {
-            string methodName = string.Format($"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}");
+            string methodName = string.Format($"{invocation.Method.Name}");
             var arguments = invocation.Arguments.ToList();
 
             string key = $"{methodName}(${string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))}";
